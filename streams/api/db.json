@@ -1,0 +1,27 @@
+{
+  "streams": [
+    {
+      "title": "Test",
+      "description": "Test",
+      "id": 1
+    },
+    {
+      "title": "My little Test Stream with an User ID !",
+      "description": "This stream has an USer ID attached to it! isnt that great!",
+      "userId": "114414279200976058475",
+      "id": 2
+    },
+    {
+      "title": "My little Test Stream with an User ID !",
+      "description": "This stream has an USer ID attached to it! isnt that great!",
+      "userId": "114414279200976058475",
+      "id": 3
+    },
+    {
+      "title": "This is a nice test for redirectiong the user",
+      "description": "in the case of an successfull stream creation",
+      "userId": "114414279200976058475",
+      "id": 4
+    }
+  ]
+}
