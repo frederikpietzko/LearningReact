@@ -1,7 +1,41 @@
-import React from "react";
+import _ from "lodash";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { fetchStream, editStream } from "../../actions";
+import StreamForm from "./streamForm";
 
-const StreamEdit = () => {
-  return <div>StreamEdit</div>;
+class StreamEdit extends Component {
+  componentDidMount() {
+    this.props.fetchStream(this.props.match.params.id);
+  }
+
+  onSubmit = formValues => {
+    this.props.editStream(this.props.stream.id, formValues);
+  };
+
+  render() {
+    if (!this.props.stream) return <div>Loading...</div>;
+    return (
+      <div>
+        <h3>
+          Edit a Stream{" "}
+          <StreamForm
+            // here lodash picks the key-value pairs with the names of title & description.
+            // This is so our backend only receives the changed values on editing the Stream
+            initialValues={_.pick(this.props.stream, "title", "description")}
+            onSubmit={this.onSubmit}
+          />
+        </h3>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state, ownProps) => {
+  return { stream: state.streams[ownProps.match.params.id] };
 };
 
-export default StreamEdit;
+export default connect(
+  mapStateToProps,
+  { fetchStream, editStream }
+)(StreamEdit);
